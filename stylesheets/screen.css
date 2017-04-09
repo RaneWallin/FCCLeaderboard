@@ -66,3 +66,9 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
+
+/* line 9, ../sass/screen.scss */
+.camper-img {
+  max-height: 50px;
+  padding-right: 5px;
+}
