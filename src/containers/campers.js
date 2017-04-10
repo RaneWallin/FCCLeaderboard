@@ -37,7 +37,7 @@ class Campers extends Component {
 				 <thead>
 			 		<tr>
 			 		<th>#</th>
-			 		<th>Camper Name</th>
+			 		<TableSorter title="Camper Name" which="username" />
 			 		<TableSorter title="Points in past 30 days" which="recent" />
 			 		<TableSorter title="All time points" which="alltime" />
 			 		</tr>
