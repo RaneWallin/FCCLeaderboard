@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCampers } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import FETCH_CAMPERS from '../actions/index';
+import TableSorter from './table_sorter';
 
 class Campers extends Component {
 
@@ -12,6 +13,7 @@ class Campers extends Component {
 	}
 
 	renderCampers(campers) {
+		console.log('test');
 		if (!this.props.campers)
 			return "";
 
@@ -31,14 +33,15 @@ class Campers extends Component {
 	}
 
 	render() {
+		console.log('rendering...');
 		return (
 			<table className="table table-hover">
 				 <thead>
 			 		<tr>
 			 		<th>#</th>
 			 		<th>Camper Name</th>
-			 		<th>Points in past 30 days</th>
-			 		<th>All time points</th>
+			 		<TableSorter title="Points in past 30 days" which="recent" />
+			 		<TableSorter title="All time points" which="alltime" />
 			 		</tr>
 				 </thead>
 				 <tbody>
