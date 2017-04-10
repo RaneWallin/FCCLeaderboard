@@ -12,7 +12,8 @@ export default function (state = {}, action) {
 
 			newState = {
 					data: action.payload.data,
-					which: 'recent' // initial data is sorted recent by default
+					which: 'recent', // initial data is sorted recent by default
+					way: 1
 				};
 		
 			return newState;
@@ -20,12 +21,16 @@ export default function (state = {}, action) {
 		case SORT_CAMPERS:
 			const which = action.which;
 
+
 			// cloning the whole state object is problematic
 			// so just pulling out the parts we need to
 			// build the newwState
 			newState.data = [...state.data];
 			newState.which = which;
-
+			newState.way = state.way;
+			
+			if(which == state.which) newState.way *= -1;
+				else newState.way = 1;
 			// Sort the new state based on which
 			// If the user has clicked the same sorting
 			// tav state.which == which will be true
@@ -33,7 +38,7 @@ export default function (state = {}, action) {
 			// that tab
 			newState.data = sortMe(newState.data, 
 									which, 
-									state.which == which);
+									newState.way);
 
 			return newState;
 			
@@ -42,19 +47,16 @@ export default function (state = {}, action) {
 	}
 }
 
-function sortMe(data, type, reverseMe) {
-	let mlt = 1;
+function sortMe(data, type, way) {
 
-	// reverse the sort order
-	if(reverseMe) mlt = -1;
 
 	switch(type) {
 		case 'username':
 			data = data.sort(function(a, b) {
 				if (b[type].toLowerCase() > a[type].toLowerCase())
-					return -1 * mlt;
+					return -way;
 				if (b[type].toLowerCase() < a[type].toLowerCase())
-					return 1 * mlt;
+					return way;
 				else
 					return 0;
 			});
@@ -63,9 +65,9 @@ function sortMe(data, type, reverseMe) {
 		case 'recent':
 			data = data.sort(function(a, b) {
 				if (b[type] > a[type])
-					return 1 * mlt;
+					return way;
 				if (b[type] < a[type])
-					return -1 * mlt;
+					return -way;
 				else
 					return 0;
 			});

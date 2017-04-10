@@ -13,6 +13,7 @@ class Campers extends Component {
 	}
 
 	renderCampers(campers) {
+		const fccUrl = "https://www.freecodecamp.com/";
 		if (!this.props.campers)
 			return "";
 
@@ -22,7 +23,7 @@ class Campers extends Component {
 					<td>{i + 1}</td>
 					<td>
 						<img className="camper-img" src={camper.img} />
-						{camper.username}
+						<a href={fccUrl+camper.username} target="_blank">{camper.username}</a>
 					</td>
 					<td>{camper.recent}</td>
 					<td>{camper.alltime}</td>
@@ -33,21 +34,23 @@ class Campers extends Component {
 
 	render() {
 		return (
-			<table className="table table-hover">
-				 <thead>
-			 		<tr>
-			 		<th>#</th>
-			 		<TableSorter title="Camper Name" which="username" />
-			 		<TableSorter title="Points in past 30 days" which="recent" />
-			 		<TableSorter title="All time points" which="alltime" />
-			 		</tr>
-				 </thead>
-				 <tbody>
-					{ 
-						this.renderCampers(this.props.campers) 
-					}
-				</tbody>
-			</table>
+			<div className="table-div">
+				<table className="table table-hover">
+					 <thead>
+				 		<tr>
+				 		<th>#</th>
+				 		<TableSorter title="Camper Name" which="username" />
+				 		<TableSorter title="Points in past 30 days" which="recent" />
+				 		<TableSorter title="All time points" which="alltime" />
+				 		</tr>
+					 </thead>
+					 <tbody>
+						{ 
+							this.renderCampers(this.props.campers) 
+						}
+					</tbody>
+				</table>
+			</div>
 		);
 	}
 

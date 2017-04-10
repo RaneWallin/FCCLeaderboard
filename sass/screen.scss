@@ -11,10 +11,22 @@
 	padding-right: 5px;
 }
 
-th.sorter {
-	cursor: pointer;
+header, 
+h1, 
+h2 {
+	text-align: center;
 }
 
-th.sorter.active {
-	background: #EEE;
+h4 {
+	text-align: center;
+	font-size: smaller;
+}
+
+th {
+	&.sorter {
+		cursor: pointer;
+		&.active {
+			background: #EEE;
+		}
+	}
 }
