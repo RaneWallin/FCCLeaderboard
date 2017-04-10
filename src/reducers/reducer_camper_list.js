@@ -1,26 +1,34 @@
 import { FETCH_CAMPERS } from '../actions/index';
 import { SORT_CAMPERS } from '../actions/index';
 
-export default function (state = null, action) {
+export default function (state = {}, action) {
+	let newState = {};
+
 	switch(action.type) {
 		case FETCH_CAMPERS:
-			return action.payload.data;
+
+			newState = {
+					data: action.payload.data
+				};
+		
+			return newState;
 			break;
 		case SORT_CAMPERS:
-			//console.log(state);
-			console.log(state[0])
+			
+			newState.data = [...state.data];
+			newState.which = action.which;
+
 			const which = action.which;
-			let newState = state;
-			console.log(which);
-			newState = newState.sort(function(a, b) {
+			
+			newState.data = newState.data.sort(function(a, b) {
 				if(b[which] > a[which])
 					return 1;
 				if(b[which] < a[which])
 					return -1;
 				else
 					return 0;
-			})
-			console.log(newState[0]);
+			});
+
 			return newState;
 			break;
 		default:

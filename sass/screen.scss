@@ -14,3 +14,7 @@
 th.sorter {
 	cursor: pointer;
 }
+
+th.sorter.active {
+	background: #EEE;
+}

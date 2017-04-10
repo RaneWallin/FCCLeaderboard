@@ -15,12 +15,13 @@ class TableSorter extends Component {
 
 	handleClick() {
 		this.props.sortCampers(this.props.which);
+
 	}
 
 	render () {
 		return (
 			<th 
-			className='sorter'
+			className={"sorter " + ((this.props.activeSorter && this.props.activeSorter == this.props.which) ? "active" : "")}
 			onClick={this.handleClick}>{this.props.title}</th>
 		);
 	}
@@ -31,4 +32,8 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ sortCampers }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(TableSorter);
+function mapStateToProps({ campers }) {
+		return { activeSorter: campers.which };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableSorter);

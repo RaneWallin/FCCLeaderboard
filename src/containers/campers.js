@@ -13,27 +13,25 @@ class Campers extends Component {
 	}
 
 	renderCampers(campers) {
-		console.log('test');
 		if (!this.props.campers)
 			return "";
 
 		return campers.map((camper, i) => {
 			return (
 				<tr key={camper.username}>
-				<td>{i + 1}</td>
-				<td>
-				<img className="camper-img" src={camper.img} />
-				{camper.username}
-				</td>
-				<td>{camper.recent}</td>
-				<td>{camper.alltime}</td>
+					<td>{i + 1}</td>
+					<td>
+						<img className="camper-img" src={camper.img} />
+						{camper.username}
+					</td>
+					<td>{camper.recent}</td>
+					<td>{camper.alltime}</td>
 				</tr>
 			);
 		});
 	}
 
 	render() {
-		console.log('rendering...');
 		return (
 			<table className="table table-hover">
 				 <thead>
@@ -56,7 +54,7 @@ class Campers extends Component {
 }
 
 function mapStateToProps({ campers }) {
-	return { campers };
+	return { campers: campers.data };
 }
 
 function mapDispatchToProps(dispatch) {

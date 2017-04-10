@@ -9,11 +9,10 @@ export function fetchCampers() {
 	return {
 		type: FETCH_CAMPERS,
 		payload: request
-	}
+	};
 }
 
 export function sortCampers(which) {
-	console.log(which);
 	return { 
 		type: SORT_CAMPERS,
 		which: which
