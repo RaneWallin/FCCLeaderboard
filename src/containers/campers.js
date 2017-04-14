@@ -4,6 +4,7 @@ import { fetchCampers } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import FETCH_CAMPERS from '../actions/index';
 import TableSorter from './table_sorter';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Campers extends Component {
 
@@ -15,7 +16,9 @@ class Campers extends Component {
 	renderCampers(campers) {
 		const fccUrl = "https://www.freecodecamp.com/";
 		if (!this.props.campers)
-			return "";
+			return (
+				<tr><td>Loading...</td></tr>
+			);
 
 		return campers.map((camper, i) => {
 			return (
@@ -33,6 +36,11 @@ class Campers extends Component {
 	}
 
 	render() {
+		const transitionOptions = {
+			transitionName: "fade",
+			transitionEnterTimeout: 500,
+			transitonLeaveTimeout: 500
+		};
 		return (
 			<div className="table-div">
 				<table className="table table-hover">
@@ -45,9 +53,7 @@ class Campers extends Component {
 				 		</tr>
 					 </thead>
 					 <tbody>
-						{ 
-							this.renderCampers(this.props.campers) 
-						}
+						{ this.renderCampers(this.props.campers) }
 					</tbody>
 				</table>
 			</div>
